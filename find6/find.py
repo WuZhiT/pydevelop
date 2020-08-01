@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 import argparse
 
-def name_find(start, args):
+def name_find(start, args):     
     for f in start.rglob(args.name):
         print(f)
 
