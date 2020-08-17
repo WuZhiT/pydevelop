@@ -1,0 +1,11 @@
+drwxrwxr-x 9 tao tao 4096 8月   7 13:21 .
+drwxrwxr-x 3 tao tao 4096 7月  13 19:20 ..
+drwxrwxr-x 2 tao tao 4096 7月  28 11:55 catzhiling5
+drwxrwxr-x 2 tao tao 4096 7月  28 16:07 find6
+drwxrwxr-x 8 tao tao 4096 8月   1 15:46 .git
+-rw-rw-r-- 1 tao tao   23 7月  15 17:05 hello.py
+drwxrwxr-x 2 tao tao 4096 7月  26 15:12 mingling4
+-rw-rw-r-- 1 tao tao   14 7月  22 16:07 README.md
+drwxrwxr-x 2 tao tao 4096 7月  29 08:58 .vscode
+drwxrwxr-x 2 tao tao 4096 8月   1 15:49 xt7_grep
+drwxrwxr-x 2 tao tao 4096 8月   7 14:16 xt8_cut

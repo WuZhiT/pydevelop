@@ -1,0 +1,5 @@
+{
+    "editor.fontSize": 20,
+    "python.analysis.symbolsHierarchyDepthLimit": 15,
+    "editor.fontLigatures": null
+}
