@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "stopOnEntry": false,
-            "pythonPath": "/usr/bin/python3",  //python3 address
+            "python": "/usr/bin/python3",  //python3 address
             "program": "${file}",
             "console": "integratedTerminal"
         }
