@@ -111,3 +111,33 @@ def get_content2(html):
 
 def write_to_csv(file_name, data, day=14):
     """保存为csv文件"""
+    with open(file_name, 'a', errors= 'ignore', newline='') as f:
+        if day == 14:
+            header = ['日期','天气','最低气温','最高气温','风向1','风向2','风级']
+        else:
+            header = ['小时','温度','风力方向','风级','降水量','相对湿度','空气质量']
+        f_csv = csv.writer(f)
+        f_csv.writerow(header)
+        f_csv.writerows(data)
+
+def main():
+    """主函数"""
+    print("Weather test")
+
+    #西安
+    url1 = 'http://www.weather.com.cn/weather/101110101.shtml'  # 7天天气中国天气网
+    url2 = 'http://www.weather.com.cn/weather15d/101110101.shtml'  # 8-15天天气中国天气网
+
+    html1 = gethtmltext(url1)
+    data1, data1_7 = get_counent(html1) #获得1-7天和当天数据
+
+    html2 = gethtmltext(url2)
+    data8_14 = get_content2(html2) #获得8-14天数据
+    data14 = data1_7 + data8_14
+    #print(data)
+    write_to_csv('weather14.csv', data14, 14)  #保存为csv文件
+    write_to_csv('weather1.csv', data1, 1)
+
+if __name__ == '__main__':
+    main()
+    
