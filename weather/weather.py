@@ -20,7 +20,7 @@ def gethtmltext(url):
         print("访问错误")
         return " "
 
-def get_counent(html):
+def get_content(html):
     """处理得到有用信息保存数据"""
     final = [] #初始化一个列表保存数据
     bs = BeautifulSoup(html, "html.parser") #创建BeautifuSoup对象
@@ -29,7 +29,7 @@ def get_counent(html):
 
     #下面爬取当天数据
     text = bs.find_all(text = re.compile("observe24h_data")) #寻找有相关内容的标签里的内容
-    wheather_data = str(text).lstrip(r"['\nvar observe24h_data = ").rstrip(r";\n")
+    wheather_data = str(text).lstrip(r"['\nvar observe24h_data = ").rstrip(r";\n']")
     #转为字符串类型，去除非JSON格式数据(去头去尾)
     jd = json.loads(wheather_data)
     #print(json['od']['od2']) #字典的访问方式，前面两次词典套娃，后面套娃列表格式
@@ -55,7 +55,7 @@ def get_counent(html):
             inf = day.find_all('p') #找出li下面的p标签，提取第一个p标签，即天气
             temp.append(inf[0].string)
 
-            tem_low = inf[1].find('i').striing #找到最低气温
+            tem_low = inf[1].find('i').string #找到最低气温
 
             if inf[1].find('span') is None: #天气预报可能没有最高气温
                 tem_high = None
@@ -88,7 +88,7 @@ def get_content2(html):
         if i < 8:
             temp = []#临时存放每天的数据
             date = day.find('span', {'class':'time'}).string #得到日期
-            date = date[date.index('(') + 1:-2] #取出日期号
+            date = date[date.index('（') + 1:-2] #取出日期号
             temp.append(date)
             weather = day.find('span', {'class':'wea'}).string #找到天气
             temp.append(weather)
@@ -98,7 +98,7 @@ def get_content2(html):
             wind = day.find('span', {'class':'wind'}).string #找到风向
             if '转' in wind: #如果风有变化
                 temp.append(wind[:wind.index('转')])
-                temp.append(wind[wind.index('转') + 1：])
+                temp.append(wind[wind.index('转') + 1:])
             else: #如果没有变化，前后风向一致
                 temp.append(wind)
                 temp.append(wind)
@@ -129,7 +129,7 @@ def main():
     url2 = 'http://www.weather.com.cn/weather15d/101110101.shtml'  # 8-15天天气中国天气网
 
     html1 = gethtmltext(url1)
-    data1, data1_7 = get_counent(html1) #获得1-7天和当天数据
+    data1, data1_7 = get_content(html1) #获得1-7天和当天数据
 
     html2 = gethtmltext(url2)
     data8_14 = get_content2(html2) #获得8-14天数据
@@ -140,4 +140,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
