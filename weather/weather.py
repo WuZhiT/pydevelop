@@ -39,7 +39,7 @@ def get_content(html):
         if count > 23:
             continue
         count += 1
-        temp = [t['od21'], t['od22'], t['od23'], t['od24'], t['od25'], t['od26'], t['od27'], t['od28']]
+        temp = [t['od21'], t['od22'], t['od23'], t['od24'], t['od26'], t['od27'], t['od28']]
         final_day.append(temp) #final_day 是一个以列表为元素的二维列表
 
     #下面爬取7天的数据
@@ -66,6 +66,9 @@ def get_content(html):
                 temp.append(tem_high[:-1])
             else:
                 temp.append(tem_high)
+            wind = inf[2].find_all('span')  #找到风向
+            for j in wind:
+                temp.append(j['title'])
             
             wind_scale = inf[2].find('i').string  #找到风级
             index1 = wind_scale.index('级')
