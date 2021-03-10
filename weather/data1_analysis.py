@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import math
-from matplotlib.font_manager import FontProperties
-font = FontProperties(fname='/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf', size=14)
+import matplotlib
+zhfont1 = matplotlib.font_manager.FontProperties(fname="SourceHanSansSC-Bold.otf")
 
 def tem_curve(data):
     """温度曲线绘制"""
@@ -32,9 +32,9 @@ def tem_curve(data):
     plt.text(tem_min_hour + 0.15, tem_min + 0.15, str(tem_min), ha='center',va='bottom',fontsize=10.5) #标出最低温度
     plt.xticks(x)
     plt.legend()
-    plt.title('一天温度变化图')
-    plt.xlabel('时间/h')
-    plt.ylabel('摄氏度/℃')
+    plt.title('一天温度变化图', FontProperties=zhfont1)
+    plt.xlabel('时间/h', FontProperties=zhfont1)
+    plt.ylabel('摄氏度/℃', FontProperties=zhfont1)
     plt.show()
 
 def hum_curve(data):
@@ -62,9 +62,9 @@ def hum_curve(data):
     plt.text(hum_min_hour + 0.15, hum_min + 0.15, str(hum_min), ha='center', va='bottom', fontsize=10.5)  #标出最低相对湿度
     plt.xticks(x)
     plt.legend()
-    plt.title('一天相对湿度变化曲线图')
-    plt.xlabel('时间/h')
-    plt.ylabel('百分比/%')
+    plt.title('一天相对湿度变化曲线图', FontProperties=zhfont1)
+    plt.xlabel('时间/h', FontProperties=zhfont1)
+    plt.ylabel('百分比/%', FontProperties=zhfont1)
     plt.show()
 
 def air_curve(data):
@@ -104,9 +104,9 @@ def air_curve(data):
     plt.text(air_max_hour + 0.15, air_max + 0.15, str(air_max), ha='center', va='bottom', fontsize=10.5) #标出最高空气质量
     plt.text(air_min_hour + 0.15, air_min + 0.15, str(air_min), ha='center', va='bottom', fontsize=10.5) #标出最低空气质量
     plt.xticks(x)
-    plt.title('一天空气质量变化曲线图')
-    plt.xlabel('时间/h')
-    plt.ylabel('空气质量指数AQI')
+    plt.title('一天空气质量变化曲线图', FontProperties=zhfont1)
+    plt.xlabel('时间/h', FontProperties=zhfont1)
+    plt.ylabel('空气质量指数AQI', FontProperties=zhfont1)
     plt.show()
 
 def wind_radar(data):
