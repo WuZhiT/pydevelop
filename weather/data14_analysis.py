@@ -1,3 +1,4 @@
+# coding = utf-8
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -29,10 +30,10 @@ def tem_curve(data):
     plt.scatter(x, tem_low, color='blue') #点出每个时刻的温度点
 
     plt.plot([1, 15], [tem_high_ave, tem_high_ave], c='black', linestyle='--')  #画出平均温度曲线
-    plt.plot([1, 15], [tem_low_ave, tem_low_ave], c='block', linestyle='--')  #画出平均温度曲线
+    plt.plot([1, 15], [tem_low_ave, tem_low_ave], c='black', linestyle='--')  #画出平均温度曲线
     plt.legend()
     plt.text(tem_max_date + 0.15, tem_max + 0.15, str(tem_max),ha='center', va='bottom', fontsize=10.5) #标出最高温度
-    plt.text(tem_min_date + 0.15, tem_min + 0.15, str(tem_min), ha='cneter', va='bottom', fontsize=10.5) #标出最低温度
+    plt.text(tem_min_date + 0.15, tem_min + 0.15, str(tem_min), ha='center', va='bottom', fontsize=10.5) #标出最低温度
     plt.xticks(x)
     plt.title('未来14天高低温变化曲线图')
     plt.xlabel('未来天数/天')
@@ -75,7 +76,7 @@ def wind_radar(data):
     N = 8
     theta = np.arange(0. + np.pi / 8, 2 * np.pi + np.pi / 8, 2 * np.pi / 8)
     #获取极径
-    radii = np.arange(temp)
+    radii = np.array(temp)
     #绘制极区图坐标系
     plt.axes(polar=True)
     #定义每个扇区的RGB值，x越大，对应的颜色越接近蓝色
@@ -95,7 +96,7 @@ def weather_pie(data):
             dic_wea[weather[i]] = 1
     print(dic_wea)
     explode = [0.01] * len(dic_wea.keys())
-    color = ['lightskyblue', 'silver', 'yellow', 'salmon', 'grey', 'lime', 'gold', 'res', 'green', 'pink']
+    color = ['lightskyblue', 'silver', 'yellow', 'salmon', 'grey', 'lime', 'gold', 'red', 'green', 'pink']
     plt.pie(dic_wea.values(), explode=explode, labels=dic_wea.keys(), autopct='%1.1f%%', colors=color)
     plt.title('未来14天气候分布饼图')
     plt.show()
@@ -103,11 +104,11 @@ def weather_pie(data):
 def main():
     plt.rcParams['font.sans-serif'] = ['SimHei'] #解决中文显示问题
     plt.rcParams['axes.unicode_minus'] = False  #解决负号显示问题
-    data14 = pd.read_csv('weather14.csv', encoding='gb2312')
+    data14 = pd.read_csv('weather14.csv', encoding='utf-8')
     #print(data14)
     tem_curve(data14)  #未来14天高低温度变化
     wind_radar(data14)  #未来14天风级图
     weather_pie(data14)  #未来14天气候分布饼图
 
-if __name__ == '__mian__':
+if __name__ == '__main__':
     main()
